@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% block main_content %}
+
+
+<section class="container">
+    <div align="right  mt-2">
+        <h6>{{ admin }}</h6>
+    </div>
+<div class="row">
+    <div class="col-sm-12  text-center mt-2">
+        <h3>Library Management System</h3>
+        <h4>Data Entry</h4><hr>
+    </div>
+</div>
+
+
+<div class="row justify-content-around">
+    <div class="col-sm-6 border mt-5 p-3">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{Form.as_p}}
+            <input type="submit" value="'Submit" class="btn btn-success">
+            <a href="{% url 'home' %}" class="btn btn-info float-end">Record Table</a>
+        </form>
+    </div>
+</div>
+</section>
+
+{% endblock main_content%}
+

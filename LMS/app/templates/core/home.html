@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+
+
+{% block main_content %}
+
+
+
+<section class="container">
+    <div align="right  mt-2">
+        <h6>{{ admin }}</h6>
+    </div>
+<div class="row">
+    <div class="col-sm-12  text-center mt-2">
+        <h3>Library Management System</h3>
+        <h4>Record Table</h4><hr>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12 mt-2">
+        <a href="{% url 'add-data' %}" class="btn btn-primary float-end">Add Data</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12  text-center mt-2">
+        <table class="table table-dark table-hover">
+
+            <thead>
+                <tr>
+                    <th scope="col">S.no</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Catagory</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Publication</th>
+                  <th scope="col">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for book in data %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{book.book_name}}</td>
+                        <td>{{book.book_catagory}}</td>
+                        <td>{{book.author_name}}</td>
+                        <td>{{book.publication_name}}</td> 
+
+                        <td class="aline-inline">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form action="{% url 'delete-data' %}" method='POST'>
+                                            {% csrf_token %}
+                                            <input type="hidden" name="id" value={{book.uuid}}>
+                                            <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                                        </form>
+
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'edit-data' book.uuid %}" class="btn btn-warning btn-sm">Edit Data</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+
+
+
+
+                            
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>  
+        </table>  
+    </div>
+</div>
+</section>
+
+{% endblock main_content%}
+
